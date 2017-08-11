@@ -1,7 +1,7 @@
 "use strict";
 module.exports = function (input){
 	function changCodingTonumber(aCoding){
-		let number = 0 ;
+		let number  ;
 		switch (aCoding){
 			case '||:::' :number = 0 ;break ; 
 			case ':::||' :number = 1 ;break ; 
@@ -52,11 +52,16 @@ module.exports = function (input){
 		let TheNumber = '';
 		for ( let  i = 0 ; i < input.length ; i ++ ){
 			if ( i % 5 === 0  ){
-			StringCodingArray.push(TheCodingArray.slice(i,i+5).join(''));
+				StringCodingArray.push(TheCodingArray.slice(i,i+5).join(''));
 			}
 		}
-		for (let everyCoding of TheCodingArray ){
-			TheNumber += changCodingTonumber(everyCoding);
+		for ( let j = 0 ; j < StringCodingArray.length - 2 ; j ++ ){
+			TheNumber += changCodingTonumber(StringCodingArray[j]);
+		}
+		if (TheNumber.length === 9){
+			let thenumberarray = TheNumber.split('');
+			thenumberarray.splice(5 , 0 , '-');
+			TheNumber = thenumberarray.join('');
 		}
 		return TheNumber ;
 	}
